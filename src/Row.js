@@ -4,19 +4,18 @@ import "./row.css";
 import YouTube from "react-youtube";
 import movieTrailer from "movie-trailer";
 
+// base url for image request
 const imgBaseUrl = "https://image.tmdb.org/t/p/original";
 
 const Row = ({ title, fetchUrl, isLargeRow }) => {
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
 
-  // A snippet of code which runs based on a specific condition/variable
-
+  // side effect hook it runs whenever fetchUrl changes.
   useEffect(() => {
-    // if [],run once when the row loads,and don't run again
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-
+      // axios use to fetch movie data from fetch url
       setMovies(request.data.results);
       return request;
     }
