@@ -28,3 +28,15 @@
   width: 30px;
   object-fit: contain;
 }
+
+.log-out-btn {
+  color: #fff;
+  position: fixed;
+  right: 60px;
+  padding: 6px;
+  background-color: #e50914;
+  border: none;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "./axios";
-import requests from "./requests";
-import "./banner.css";
+import axios from "../../../request/axios";
+import requests from "../../../request/requests";
+import "../style/banner.css";
 
 //  This component defines Banner section for this website
 const Banner = () => {

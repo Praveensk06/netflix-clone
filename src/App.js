@@ -1,27 +1,34 @@
-import React from "react";
-import "./index.css";
-import Row from "./Row";
-import requests from "./requests";
-import Banner from "./Banner";
-import Navbar from "./Navbar";
+import React, { useEffect } from "react";
+import "./components/home/style/index.css";
+import HomeScreen from "../src/components/home/pages/HomeScreen";
+import LoginScreen from "../src/components/login/LoginScreen";
+import SignUpScreen from "../src/components/signup/SignUpScreen";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { auth } from "./firebase";
 
 const App = () => {
+  const user = null;
+
   return (
     <div className="app">
-      <Navbar />
-      <Banner />
-      <Row
-        title="NETFLIX ORIGINALS"
-        fetchUrl={requests.fetchNetflixOriginals}
-        isLargeRow
-      />
-      <Row title="Trending Now" fetchUrl={requests.fetchTrending} />
-      <Row title="Top Rated" fetchUrl={requests.fetchTopRated} />
-      <Row title="Action Movies" fetchUrl={requests.fetchActionMovies} />
-      <Row title="Comedy Movies" fetchUrl={requests.fetchComedyMovies} />
-      <Row title="Horror Movies" fetchUrl={requests.fetchHorrorMovies} />
-      <Row title="Romance Movies" fetchUrl={requests.fetchRomanceMovies} />
-      <Row title="Documentaries" fetchUrl={requests.fetchDocumentaries} />
+      <BrowserRouter>
+        {!user ? (
+          <Routes>
+            <Route path="/" element={<LoginScreen />} />
+            <Route path="/SignUpScreen" element={<SignUpScreen />} />
+            <Route path="/home" element={<HomeScreen />}></Route>
+          </Routes>
+        ) : (
+          <Route path="/home" element={<HomeScreen />}></Route>
+        )}
+        {/* 
+        <Routes>
+          <Route path="/home" element={<HomeScreen />}></Route>
+          <Route path="/login" element={<LoginScreen />} />
+          <Route path="/signup" element={<SignUpScreen />} />
+        </Routes> */}
+      </BrowserRouter>
     </div>
   );
 };

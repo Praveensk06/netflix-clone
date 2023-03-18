@@ -1,10 +1,27 @@
 import React, { useEffect, useState } from "react";
-import "./navbar.css";
+import "../style/navbar.css";
+
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebase";
+
+import { useNavigate } from "react-router-dom";
 
 // This component defines navigation bar for this website
 const Navbar = () => {
   // The nav bar state value is default it will false
   const [show, handleShow] = useState(false);
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
   // side effect for event listener
   useEffect(() => {
@@ -35,11 +52,16 @@ const Navbar = () => {
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1920px-Netflix_2015_logo.svg.png"
         alt="Netflix Logo"
       />
-      <img
-        className="nav-avatar"
-        src="https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png"
-        alt="Avatar"
-      />
+      <button onClick={logout} className="log-out-btn">
+        Logout
+      </button>
+      <div>
+        <img
+          className="nav-avatar"
+          src="https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png"
+          alt="Avatar"
+        />
+      </div>
     </div>
   );
 };
