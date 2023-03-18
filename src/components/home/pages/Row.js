@@ -7,6 +7,7 @@ import movieTrailer from "movie-trailer";
 // base url for image request
 const imgBaseUrl = "https://image.tmdb.org/t/p/original";
 
+// Row component for movie posters
 const Row = ({ title, fetchUrl, isLargeRow }) => {
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState("");
@@ -65,6 +66,7 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
           );
         })}
       </div>
+      {/* conditional rendering && the trailer url is there youtube will rendered a trailer*/}
       {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
     </div>
   );

@@ -4,3 +4,9 @@
 .app {
   background-color: #111;
 }
+
+@media screen and (max-width: 320px) {
+  .app {
+    width: 122%;
+  }
+}

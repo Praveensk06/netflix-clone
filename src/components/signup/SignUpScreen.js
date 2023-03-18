@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "./signUpScreen.css";
 import { auth } from "../../firebase";
 import {
@@ -6,9 +6,6 @@ import {
   // signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
-import { toast } from "react-toastify";
-
-// import LoginScreen from "../login/LoginScreen";
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +17,7 @@ const SignUpScreen = () => {
   const register = async (e) => {
     e.preventDefault();
 
+    // create a new user with firebase authentication
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -28,32 +26,12 @@ const SignUpScreen = () => {
       );
       const user = userCredential.user;
       console.log(user);
+      // user successfully created ,user redirected to login
       navigate("/");
     } catch (err) {
-      toast.error("something wrong");
+      alert(err.message);
     }
   };
-
-  // log in
-  // const signIn = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const userCredential = await signInWithEmailAndPassword(
-  //       auth,
-  //       email,
-  //       password
-  //     );
-
-  //     const user = userCredential.user;
-  //     console.log(user);
-
-  //     toast.success("successfully logged in");
-  //     navigate("/home"); // redirect to HomeScreen
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   }
-  // };
 
   return (
     <div className="sign-in-screen">

@@ -1,14 +1,10 @@
-import React, { useState } from "react";
-import SignUpScreen from "../signup/SignUpScreen";
+import React from "react";
 import "./LoginScreen.css";
 import { auth } from "../../firebase";
-
 import { useNavigate, Link } from "react-router-dom";
-
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginScreen = () => {
-  // const [signIn, setSignIn] = useState(false);
   const navigate = useNavigate();
 
   // log in
@@ -27,13 +23,9 @@ const LoginScreen = () => {
 
       const user = userCredential.user;
       console.log(user);
-
-      // toast.success("successfully logged in");
       navigate("/home"); // redirect to HomeScreen
     } catch (error) {
       alert(error.message);
-
-      // toast.error(error.message);
     }
   };
 
@@ -45,11 +37,7 @@ const LoginScreen = () => {
           alt=""
           className="login-screen-logo"
         />
-        <Link
-          to="/SignUpScreen"
-          // onClick={() => setSignIn(true)}
-          className="login-btn"
-        >
+        <Link to="/SignUpScreen" className="login-btn">
           Sign Up
         </Link>
         <div className="login-screen-gradient"></div>
@@ -59,25 +47,16 @@ const LoginScreen = () => {
             <h2>Watch anywhere. Cancel at any time.</h2>
             <h3>Ready to watch? Enter your email to create membership.</h3>
             <div className="login-screen-input">
+              {/* form control */}
               <form onSubmit={handlerSubmit}>
                 <div className="form-group ">
                   <input type="email" placeholder="Email Address" />
                   <input type="password" placeholder="Enter Password" />
                 </div>
-                <button
-                  className="login-screen-get-started-btn"
-                  // onClick={() => setSignIn(true)}
-                >
-                  Login
-                </button>
+                <button className="login-screen-get-started-btn">Login</button>
               </form>
             </div>
           </>
-          {/* {SignIn ? (
-            <SignUpScreen />
-          ) : (
-           
-          )} */}
         </div>
       </div>
     </div>
